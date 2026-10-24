@@ -71,6 +71,7 @@ LRESULT CALLBACK cb(HWND hwnd, UINT msg, WPARAM wparm, LPARAM lparm)
     case WM_COMMAND:
     {
         int buttonID = LOWORD(wparm);
+
         if (ctx->isStart == 1 && buttonID >= level_id[0] && buttonID <= level_id[LEVEL_COUNT - 1])
         {
             DeleteLevelButtons(hwnd);

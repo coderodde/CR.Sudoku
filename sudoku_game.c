@@ -10,10 +10,9 @@
 #define SUDOKU_DIMENSIONS 9
 #define INT_SET_SIZE (SUDOKU_DIMENSIONS + 1)
 #define MINISQUARE_DIMENSIONS 3
-#define SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 #define UNUSED 0
 
-typedef int index;
+typedef size_t index;
 typedef int entry;
 
 struct int_set 
@@ -51,9 +50,6 @@ struct sudoku_state
 
     struct int_set minisquare_sets[MINISQUARE_DIMENSIONS]
                                   [MINISQUARE_DIMENSIONS];
-
-    index minisquare_x;
-    index minisquare_y;
 };
 
 static void copy_input_row(int* input_row, entry* entry_row)
@@ -124,15 +120,6 @@ bool sudoku_state_init(struct sudoku_state* state, int (*input_grid)[SUDOKU_DIME
     }
 
     return true;
-}
-
-void sudoku_state_load_minisquare_coords(
-    struct sudoku_state* state,
-    index x,
-    index y)
-{
-    state->minisquare_x = x / MINISQUARE_DIMENSIONS;
-    state->minisquare_y = y / MINISQUARE_DIMENSIONS;
 }
 
 void fillWithZero(int (*grid1)[9], int (*grid2)[9], int level)
